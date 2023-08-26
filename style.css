@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&family=Roboto:wght@100;400&display=swap');
 
-*,
 body{
     margin: 0;
     padding: 0;
     font-family: 'Nunito Sans',sans-serif;
+    background:linear-gradient(white,rgb(228, 162, 162));
 }
 
 .header{
-    background: rgb(244,244,244);
     height: 200px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color:black;
-    box-shadow: 0px 1px 12px;
 }
 
 .header h1{
@@ -60,7 +58,7 @@ li::after{
     transition: transform 0.5s;
     transform:scaleX(0);
     transform-origin: right;
-    background-color: rgb(228, 115, 115);
+    background-color: rgb(247, 147, 147);
 }
 
 a:hover{
@@ -90,4 +88,10 @@ li:hover:after{
     display: flex;
     gap:50px;
     justify-content: center;
+}
+
+.featured{
+    writing-mode: vertical-lr;
+    font-size: 50px;
+    margin-top: 200PX;
 }
