@@ -7,6 +7,7 @@ body{
     background:linear-gradient(white,rgb(228, 162, 162));
 }
 
+
 .header{
     height: 200px;
     width: 100%;
@@ -14,6 +15,7 @@ body{
     align-items: center;
     justify-content: space-between;
     color:black;
+
 }
 
 .header h1{
@@ -94,4 +96,37 @@ li:hover:after{
     writing-mode: vertical-lr;
     font-size: 50px;
     margin-top: 200PX;
+}
+
+.item img{
+    width: 220px;
+}
+
+.shop{
+    display: grid;
+    grid-template-columns: repeat(4, 223px);
+    gap:30px;
+    justify-content: center;
+}
+
+.item{
+    border:1px solid black;
+    border-radius: 4px;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.price-quantity{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons{
+    display: flex;
+    gap:8px;
+    margin-top: 25px;
 }
