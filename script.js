@@ -41,7 +41,7 @@ let generateMenShop = () => {
             <div class="price-quantity">
                 <h2>$ ${item.price}</h2>
                 <div class="buttons">
-                    <i onclick="decrement(${item.id})" class="bi bi-dash-lg"></i>
+                    <i onclick="decrement(${item.id},${item.price})" class="bi bi-dash-lg"></i>
                     <div id=${item.id} class="quantity">0</div>
                     <i onclick="increment(${item.id},${item.price})" class="bi bi-plus-lg"></i>
                 </div>
@@ -76,7 +76,7 @@ let increment = (id,price) => {
     update(selectedItem.id);
 }
 
-let decrement = (id) => {
+let decrement = (id,price) => {
     let selectedItem = id;
 
     let search = basket.find((x)=> x.id === selectedItem.id);
@@ -86,6 +86,7 @@ let decrement = (id) => {
     if(search.amount === 0) return;
     else{
         search.amount -= 1;
+        search.price = search.amount * price;
     }
     
     update(selectedItem.id);
