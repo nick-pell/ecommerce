@@ -33,6 +33,8 @@ body{
     flex-shrink: 1;
 }
 
+
+
 a{
     text-decoration: none;
     color:black;
@@ -42,10 +44,6 @@ ul{
     list-style-type: none;
 }
 
-.checkout-area img{
-    height: 50px;
-    width: 50px;    
-}
 
 li{
     position: relative;
@@ -77,10 +75,31 @@ li:hover:after{
 }
 
 .checkout-area{
+    position: relative;
     display: flex;
     align-items: center;
-    padding-right: 20px ;
-    gap:10px;
+    padding-right: 30px ;
+    gap:20px;
+    font-size:20px;
+
+}
+
+.checkout-area i {
+    font-size:35px;
+}
+
+.cartAmount{
+    position: absolute;
+    top: 0;
+    right:90px;
+    color:red;
+    border-radius: 50%;
+    width:20px;
+    height: auto;
+    text-align: center;
+    font-weight: 500;
+    font-size:1rem;
+    
 }
 
 .showcase img{
