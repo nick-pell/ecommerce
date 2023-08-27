@@ -5,7 +5,9 @@ body{
     padding: 0;
     font-family: 'Nunito Sans',sans-serif;
     background:linear-gradient(white,rgb(228, 162, 162));
+
 }
+
 
 
 .header{
@@ -18,6 +20,7 @@ body{
 
 }
 
+
 .header h1{
     font-size: 2rem;
     padding: 20px;
@@ -27,6 +30,7 @@ body{
     display: flex;
     gap:6rem;
     font-size: 1.5rem;
+    flex-shrink: 1;
 }
 
 a{
@@ -109,9 +113,28 @@ li:hover:after{
     justify-content: center;
 }
 
+@media (max-width:1000px){
+    .shop{
+        grid-template-columns: repeat(2,223px);
+    }
+    .navigation{
+        display: none;
+    }
+
+}
+@media (max-width:500px){
+    .shop{
+        grid-template-columns: repeat(1,223px);
+    }
+
+}
+
+
 .item{
     border:1px solid black;
     border-radius: 4px;
+    box-shadow: 1px 1px 8px;
+    background-color: white;
 }
 
 .details{
@@ -120,13 +143,23 @@ li:hover:after{
     padding: 10px;
 }
 
+
 .price-quantity{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .buttons{
     display: flex;
     gap:8px;
-    margin-top: 25px;
+}
+
+.bi-dash-lg{
+    color:red;
+
+}
+
+.bi-plus-lg{
+    color:green;
 }
