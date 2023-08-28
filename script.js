@@ -37,7 +37,7 @@ let generateMenShop = () => {
 
         return `
         <div id=product-id-${item.id} class="item">
-        <img src="${item.img}" alt="">
+        <img src="${item.img}" alt=""> 
         <div class="details">
             <h3>${item.name}</h3>
             <p>${item.desc}</p>
@@ -115,6 +115,8 @@ let calculation = () => {
     console.log(basket);
 
 }
+
+calculation();      // invoked here so values get updated automatically when refreshed
 
 
 // ! ------------------------------------------------------------------------------------------------------------------------------------------------- !
