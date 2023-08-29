@@ -1,3 +1,5 @@
+let label = document.getElementById('label');
+let shoppingCart = document.getElementById('shopping-cart')
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 // update cart counters
@@ -11,3 +13,22 @@ let calculation = () => {
 }
 
 calculation();
+
+let generateCartItems = () => {
+
+// 2 cases - empty basket & full basket
+
+    if(basket.length !== 0){
+
+    }else{
+        shoppingCart.innerHTML = ``
+        label.innerHTML = `
+        <h2>Cart is Empty</h2>
+        <a href="/index.html">
+            <button class="homeBtn">Back to home</button> 
+        `
+    }
+
+}
+
+generateCartItems();
