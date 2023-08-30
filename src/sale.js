@@ -1,14 +1,14 @@
-// ! MENS SHOP SECTION !
+// ! saleS SHOP SECTION !
 
-let menShop = document.getElementById('menShop');
+let saleShop = document.getElementById('saleShop');
 
 
 let basket = JSON.parse(localStorage.getItem("data")) || [];          // retrieve basket data from local storage, but if no data, initializes empty array 
 
-let generateMenShop = () => {
-    return (menShop.innerHTML = menShopItemsData.map((item)=>{
+let generateSaleShop = () => {
+    return (saleShop.innerHTML = saleShopItemsData.map((item)=>{
 
-        // search function to update the item counter on each card so it matches with the data when the browser is refreshed. (without this, it will initialize to zero first, then update to the correct value when incremented / decremented)
+        // search function to update the item counter on each card so it matches with the data when the browser is refreshed. (without this, it will initialize to zero first, then update to the correct value when incresaleted / decresaleted)
         let search = basket.find((x)=> x.id === item.id) || []       // if we dont find anything, return empty array
 
         return `
@@ -36,7 +36,7 @@ let generateMenShop = () => {
 
 };
 
-generateMenShop();
+generateSaleShop();
 
 let increment = (id,price) => {
     let selectedItem = id;
@@ -53,10 +53,7 @@ let increment = (id,price) => {
         search.amount += 1;
         search.price = search.amount * price;
     }
-    // let alert = document.getElementByClass('alert');
-    // alert.innerHTML = `
-    //     <div>${selectedItem.name} added to cart.</div>
-    // `
+    
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
 
@@ -67,7 +64,7 @@ let decrement = (id,price) => {
 
     let search = basket.find((x)=> x.id === selectedItem.id);
 
-    if(search === undefined) return;                            // if item isnt in basket you cant decrement it so it just returns
+    if(search === undefined) return;                            // if item isnt in basket you cant decresalet it so it just returns
 
     if(search.amount === 0) return;
     else{
