@@ -21,7 +21,7 @@ let generateCartItems = () => {
     if(basket.length !== 0){
         shoppingCart.innerHTML = basket.map((item)=>{
             // search function matches ID in basket to ID in shopItemsData
-            let search = menShopItemsData.find((x)=> x.id === item.id ) || []
+            let search = allShopItemsData.find((x)=> x.id === item.id ) || []
             return `
             <div class="cart-item">
                 <img width="150" src="${search.img}"/>
@@ -49,6 +49,7 @@ let generateCartItems = () => {
     }else{
         shoppingCart.innerHTML = ``
         label.innerHTML = `
+        
         <h2>Cart is Empty</h2>
         <a href="/index.html">
             <button class="homeBtn">Back to home</button> 
@@ -76,6 +77,7 @@ let increment = (id,price) => {
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
     generateCartItems();
+    totalAmount()
 
 }
 
@@ -95,7 +97,7 @@ let decrement = (id,price) => {
     basket = basket.filter((x)=>x.amount !== 0); // removes item from  basket if amount is 0
     generateCartItems();        // called here so items that get decremented to 0 get removed from checkout p
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
-
+    totalAmount();
 
 }
 
@@ -115,6 +117,8 @@ let clearItem = (id) => {
 
     localStorage.setItem("data",JSON.stringify(basket));
     generateCartItems();
+    totalAmount();
+    calculation();
 
 }
 
@@ -124,10 +128,17 @@ let totalAmount = () => {
         label.innerHTML = `
         <h2>Total: $${total}</h2>
         <button class="checkoutBtn">Checkout</button>
-        <button class="clearCart">Clear Cart</button>
+        <button onclick="clearCart()" class="clearCart">Clear Cart</button>
         `
         
     }else return;
+}
+
+let clearCart = () => {
+    basket = [];
+    generateCartItems();
+    localStorage.setItem("data",JSON.stringify(basket));
+    calculation();
 }
 
 totalAmount();

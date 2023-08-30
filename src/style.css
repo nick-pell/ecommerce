@@ -218,7 +218,9 @@ li:hover:after{
     color:white;
 }
 
-.homeBtn:active {
+.homeBtn:active,
+.checkoutBtn:active,
+.clearCart:active {
     background-color: lightgray;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
@@ -268,7 +270,7 @@ li:hover:after{
     border-radius: 5px;
     text-align: center;
 
+}
 
-  }
-  
+ 
   
