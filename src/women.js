@@ -50,6 +50,7 @@ let increment = (id,price) => {
         search.price = search.amount * price;
     }
     
+    onScreenAlertAdd(selectedItem);
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
 
@@ -88,6 +89,24 @@ let calculation = () => {
     let cartTotal = document.getElementById("cartTotal");
     cartAmount.innerHTML = basket.map((x)=> x.amount).reduce((prev,next) => prev + next, 0)
     cartTotal.innerHTML = `$`+basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0)
+
+
+}
+let onScreenAlertAdd = (selectedItem) => {
+
+    let find = womenShopItemsData.find((y)=> y.id === selectedItem.id );      // this function finds the selectedItem in the ShopItemsData arrays so it can access its name property to put into alert. (tried to pass in item.name in generateMenShop but didnt work for some reason idk )
+    let name = find.name;
+    let alert = document.getElementById('alert');
+    const alertMessage = document.createElement('div');
+    alertMessage.classList.remove('clear');
+    alertMessage.classList.add('alertMessage');
+    alertMessage.innerHTML = `${name} added to cart.`;
+    alert.appendChild(alertMessage);
+
+    setTimeout(()=>{
+        alertMessage.innerHTML = '';
+        alertMessage.classList.add('clear');
+    },1000);
 
 
 }
