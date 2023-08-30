@@ -193,7 +193,9 @@ li:hover:after{
     margin-bottom: 20px;
 }
 
-.homeBtn{
+.homeBtn,
+.checkoutBtn,
+.clearCart{
     background-color: white ;
     color:black;
     border-radius: 5px;
@@ -202,6 +204,18 @@ li:hover:after{
     font-size: 1rem;
     cursor: pointer;
     box-shadow: 5px 5px 2px;
+}
+
+.checkoutBtn{
+    background-color: green;
+    box-shadow: 5px 5px 2px black;
+    color:white;
+}
+
+.clearCart{
+    background-color: red;
+    box-shadow: 5px 5px 2px black;
+    color:white;
 }
 
 .homeBtn:active {
@@ -256,3 +270,5 @@ li:hover:after{
 
 
   }
+  
+  

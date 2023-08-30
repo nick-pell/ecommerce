@@ -32,7 +32,7 @@ let generateCartItems = () => {
                             <p>${search.name}</p>
                             <p class="cart-item-price">$${search.price}</p>
                         </h4>
-                        <i onclick="clearItem(${item.id}") class="bi bi-x-lg"></i>
+                        <i onclick="clearItem(${search.id})" class="bi bi-x-lg"></i>
                     </div> 
                         <div class="buttons">
                         <i onclick="decrement(${item.id},${search.price})" class="bi bi-dash-lg"></i>
@@ -109,7 +109,25 @@ let update = (id) => {
 }
 
 let clearItem = (id) => {
-    let selectedItem = id;
-    console.log(selectedItem);
+    selectedItem = id;
+    basket = basket.filter((x)=> {  // goes thru the basket until x.id = selecteditem.id, then doesnt add that item back into the basket
+        return x.id !== selectedItem.id});
+
+    localStorage.setItem("data",JSON.stringify(basket));
+    generateCartItems();
 
 }
+
+let totalAmount = () => {
+    if(basket.length !== 0){
+        let total = basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0);
+        label.innerHTML = `
+        <h2>Total: $${total}</h2>
+        <button class="checkoutBtn">Checkout</button>
+        <button class="clearCart">Clear Cart</button>
+        `
+        
+    }else return;
+}
+
+totalAmount();
