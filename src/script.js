@@ -53,6 +53,8 @@ let increment = (id,price) => {
         search.amount += 1;
         search.price = search.amount * price;
     }
+    console.log("script.js increment call")
+    console.log(basket);
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
 
@@ -91,6 +93,7 @@ let calculation = () => {
     let cartTotal = document.getElementById("cartTotal");
     cartAmount.innerHTML = basket.map((x)=> x.amount).reduce((prev,next) => prev + next, 0)
     cartTotal.innerHTML = `$`+basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0)
+    console.log("script.js calculation call")
     console.log(basket);
 
 }

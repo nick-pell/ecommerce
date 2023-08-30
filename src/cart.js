@@ -8,7 +8,7 @@ let calculation = () => {
     let cartTotal = document.getElementById("cartTotal");
     cartAmount.innerHTML = basket.map((x)=> x.amount).reduce((prev,next) => prev + next, 0)
     cartTotal.innerHTML = `$`+basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0)
-    console.log(basket);
+
 
 }
 
@@ -32,15 +32,15 @@ let generateCartItems = () => {
                             <p>${search.name}</p>
                             <p class="cart-item-price">$${search.price}</p>
                         </h4>
-                        <i class="bi bi-x-lg"></i>
+                        <i onclick="clearItem(${item.id}") class="bi bi-x-lg"></i>
                     </div> 
                         <div class="buttons">
-                        <i onclick="decrement(${item.id},${item.price})" class="bi bi-dash-lg"></i>
+                        <i onclick="decrement(${item.id},${search.price})" class="bi bi-dash-lg"></i>
                         <div id=${item.id} class="quantity">${item.amount}</div>
-                        <i onclick="increment(${item.id},${item.price})" class="bi bi-plus-lg"></i>
+                        <i onclick="increment(${item.id},${search.price})" class="bi bi-plus-lg"></i>
                     </div>
 
-                    <h3></h3>
+                    <h3>Item Total: $${item.price}</h3>
                 </div>
             </div>
             `
@@ -63,7 +63,6 @@ let increment = (id,price) => {
     let selectedItem = id;
 
     let search = basket.find((x)=> x.id === selectedItem.id);       // search function checks whether it exists in basket
-
     if(search === undefined){
         basket.push({
             id: selectedItem.id,
@@ -76,6 +75,7 @@ let increment = (id,price) => {
     }
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
+    generateCartItems();
 
 }
 
@@ -93,6 +93,7 @@ let decrement = (id,price) => {
     }
     update(selectedItem.id);
     basket = basket.filter((x)=>x.amount !== 0); // removes item from  basket if amount is 0
+    generateCartItems();        // called here so items that get decremented to 0 get removed from checkout p
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
 
 
@@ -104,5 +105,11 @@ let update = (id) => {
     // updates the amount to show how many items added
     document.getElementById(id).innerHTML = search.amount;
     calculation();
+
+}
+
+let clearItem = (id) => {
+    let selectedItem = id;
+    console.log(selectedItem);
 
 }
