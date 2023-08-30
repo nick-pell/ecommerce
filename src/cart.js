@@ -19,6 +19,32 @@ let generateCartItems = () => {
 // 2 cases - empty basket & full basket
 
     if(basket.length !== 0){
+        shoppingCart.innerHTML = basket.map((item)=>{
+            // search function matches ID in basket to ID in shopItemsData
+            let search = menShopItemsData.find((x)=> x.id === item.id ) || []
+            return `
+            <div class="cart-item">
+                <img width="150" src="${search.img}"/>
+                <div class="details">
+
+                    <div class="title-price-x">
+                        <h4 class="title-price">
+                            <p>${search.name}</p>
+                            <p class="cart-item-price">$${search.price}</p>
+                        </h4>
+                        <i class="bi bi-x-lg"></i>
+                    </div> 
+                        <div class="buttons">
+                        <i onclick="decrement(${item.id},${item.price})" class="bi bi-dash-lg"></i>
+                        <div id=${item.id} class="quantity">${item.amount}</div>
+                        <i onclick="increment(${item.id},${item.price})" class="bi bi-plus-lg"></i>
+                    </div>
+
+                    <h3></h3>
+                </div>
+            </div>
+            `
+        }).join("")
 
     }else{
         shoppingCart.innerHTML = ``
@@ -32,3 +58,51 @@ let generateCartItems = () => {
 }
 
 generateCartItems();
+
+let increment = (id,price) => {
+    let selectedItem = id;
+
+    let search = basket.find((x)=> x.id === selectedItem.id);       // search function checks whether it exists in basket
+
+    if(search === undefined){
+        basket.push({
+            id: selectedItem.id,
+            amount: 1,
+            price: price,
+        });
+    }else{
+        search.amount += 1;
+        search.price = search.amount * price;
+    }
+    update(selectedItem.id);
+    localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
+
+}
+
+let decrement = (id,price) => {
+    let selectedItem = id;
+
+    let search = basket.find((x)=> x.id === selectedItem.id);
+
+    if(search === undefined) return;                            // if item isnt in basket you cant decrement it so it just returns
+
+    if(search.amount === 0) return;
+    else{
+        search.amount -= 1;
+        search.price = search.amount * price;
+    }
+    update(selectedItem.id);
+    basket = basket.filter((x)=>x.amount !== 0); // removes item from  basket if amount is 0
+    localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
+
+
+}
+
+let update = (id) => {
+    // finding item in basket
+    let search = basket.find((x) => x.id === id )
+    // updates the amount to show how many items added
+    document.getElementById(id).innerHTML = search.amount;
+    calculation();
+
+}

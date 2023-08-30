@@ -176,6 +176,9 @@ li:hover:after{
     gap:8px;
 }
 
+.bi{
+    cursor: pointer;
+}
 .bi-dash-lg{
     color:red;
 
@@ -207,4 +210,49 @@ li:hover:after{
     transform: translateY(4px);
   }
 
-  
+  .bi-x-lg{
+    color: red;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+
+  .shopping-cart{
+    display: grid;
+    grid-template-columns: repeat(1,500px);
+    justify-content: center;
+    gap:15px;
+  }
+
+  .cart-item{
+    border:2px solid white;
+    box-shadow: 1px 1px 8px;
+    border-radius: 5px;
+    display: flex;
+  }
+
+  .cart-item img{
+    width: 220px;
+  }
+
+  .title-price-x{
+    width:250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title-price{
+    display: flex;
+    align-items: center;
+    gap:20px;
+  }
+
+  .cart-item-price{
+    background-color: black;
+    color:white;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+
+
+  }
