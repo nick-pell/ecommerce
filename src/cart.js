@@ -127,7 +127,7 @@ let totalAmount = () => {
         let total = basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0);
         label.innerHTML = `
         <h2>Total: $${total}</h2>
-        <button class="checkoutBtn">Checkout</button>
+        <button class="checkoutBtn" id="checkoutBtn">Checkout</button>
         <button onclick="clearCart()" class="clearCart">Clear Cart</button>
         `
         
@@ -142,3 +142,9 @@ let clearCart = () => {
 }
 
 totalAmount();
+
+const checkoutBtn = document.getElementById('checkoutBtn');
+checkoutBtn.addEventListener('click', () =>{
+    
+
+});
