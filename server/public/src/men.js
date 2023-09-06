@@ -40,7 +40,6 @@ generateMenShop();
 
 let increment = (id,price) => {
     let selectedItem = id;
-
     let search = basket.find((x)=> x.id === selectedItem.id);       // search function checks whether it exists in basket
 
     if(search === undefined){
@@ -58,7 +57,6 @@ let increment = (id,price) => {
     onScreenAlertAdd(selectedItem);
     update(selectedItem.id);
     localStorage.setItem("data",JSON.stringify(basket));                                                       // save data to local storage so data doesnt clear on refresh
-
 }
 
 let decrement = (id,price) => {

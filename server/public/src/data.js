@@ -264,3 +264,5 @@ let saleShopItemsData = [{
 }];
 
 let allShopItemsData = menShopItemsData.concat(womenShopItemsData).concat(kidShopItemsData).concat(accessoriesShopItemsData).concat(saleShopItemsData);
+
+module.exports = allShopItemsData;

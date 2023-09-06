@@ -39,6 +39,7 @@ let increment = (id,price) => {
 
     let search = basket.find((x)=> x.id === selectedItem.id);       // search function checks whether it exists in basket
 
+
     if(search === undefined){
         basket.push({
             id: selectedItem.id,

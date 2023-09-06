@@ -143,8 +143,25 @@ let clearCart = () => {
 
 totalAmount();
 
+
 const checkoutBtn = document.getElementById('checkoutBtn');
 checkoutBtn.addEventListener('click', () =>{
-    
 
+    console.log(basket);
+    fetch('/create-checkout-session',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            items: basket
+        })
+    }).then(res => {
+        if(res.ok) return res.json()
+        return res.json().then(json => Promise.reject(json))
+    }).then(({ url }) =>{
+        window.location = url;
+    }).catch(e => {
+        console.error(e.error);
+    })
 });
