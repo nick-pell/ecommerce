@@ -12,6 +12,7 @@ let calculation = () => {
 
 }
 
+
 calculation();
 
 let generateCartItems = () => {
@@ -45,7 +46,7 @@ let generateCartItems = () => {
             </div>
             `
         }).join("")
-
+        
     }else{
         shoppingCart.innerHTML = ``
         label.innerHTML = `
@@ -122,6 +123,33 @@ let clearItem = (id) => {
 
 }
 
+let addCheckoutButtonListener = () => {     // this function prevents an error when the cart is empty and an eventListener is tried to be placed onto the checkout that doesnt exist
+
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    checkoutBtn.addEventListener('click', () =>{
+    
+        fetch('/create-checkout-session',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                items: basket
+            })
+        }).then(res => {
+            if(res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        }).then(({ url }) =>{
+            window.location = url;
+        }).catch(e => {
+            console.error(e.error);
+        })
+    });
+    
+    }
+
+
+
 let totalAmount = () => {
     if(basket.length !== 0){
         let total = basket.map((x)=> x.price).reduce((prev,next) => prev + next, 0);
@@ -130,7 +158,7 @@ let totalAmount = () => {
         <button class="checkoutBtn" id="checkoutBtn">Checkout</button>
         <button onclick="clearCart()" class="clearCart">Clear Cart</button>
         `
-        
+        addCheckoutButtonListener();   
     }else return;
 }
 
@@ -144,24 +172,3 @@ let clearCart = () => {
 totalAmount();
 
 
-const checkoutBtn = document.getElementById('checkoutBtn');
-checkoutBtn.addEventListener('click', () =>{
-
-    console.log(basket);
-    fetch('/create-checkout-session',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            items: basket
-        })
-    }).then(res => {
-        if(res.ok) return res.json()
-        return res.json().then(json => Promise.reject(json))
-    }).then(({ url }) =>{
-        window.location = url;
-    }).catch(e => {
-        console.error(e.error);
-    })
-});

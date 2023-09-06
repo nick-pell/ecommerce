@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-let allShopItems = require('./public/src/data.js')
+const allShopItems = require('./public/src/data.js')
 
 app.use(express.json());
 app.use(express.static("public"));
@@ -24,14 +24,15 @@ app.post('/create-checkout-session', async (req, res) => {
                         currency: 'usd',
                         product_data: {
                             name: name,
+                            images:[find.img]       // not sure why this isnt working
                         },
                         unit_amount: item.price * 100
                     },
                     quantity: item.amount
                 }
             }),
-            success_url: `${process.env.SERVER_URL}/success.html`,
-            cancel_url:  `${process.env.SERVER_URL}/cancel.html`
+            success_url: `${process.env.SERVER_URL}pages/success.html`,
+            cancel_url:  `${process.env.SERVER_URL}pages/cart.html`
         })
         
 
@@ -43,5 +44,3 @@ app.post('/create-checkout-session', async (req, res) => {
 })
 
 app.listen(3000)
-
-
