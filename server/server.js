@@ -31,8 +31,8 @@ app.post('/create-checkout-session', async (req, res) => {
                     quantity: item.amount
                 }
             }),
-            success_url: `${process.env.SERVER_URL}pages/success.html`,
-            cancel_url:  `${process.env.SERVER_URL}pages/cart.html`
+            success_url: `${process.env.SERVER_URL}/pages/success.html`,
+            cancel_url:  `${process.env.SERVER_URL}/pages/cart.html`
         })
         
 
